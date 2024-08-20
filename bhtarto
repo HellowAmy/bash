@@ -1,0 +1,19 @@
+#! /bin/bash
+
+echo "< 压缩成压缩包 > [ 文件夹名 ]"
+
+v1=$1
+
+quit=0
+
+if [ -z $v1 ]; then
+    quit=1
+fi
+
+if [ $quit -eq 1 ]; then
+    echo "< 参数不符退出 >"
+    exit 0
+fi
+
+v1=${v1%*/}
+tar -zcvf $v1.tar.gz $v1

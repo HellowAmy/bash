@@ -1,0 +1,4 @@
+#! /bin/bash
+
+echo "< 打开图形编辑器 > [ - / 文件路径 ]"
+nohup gedit $1 >/dev/null 2>&1 &

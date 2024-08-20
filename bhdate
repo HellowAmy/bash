@@ -1,0 +1,4 @@
+#! /bin/bash
+
+echo "< 显示日期 >"
+date

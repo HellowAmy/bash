@@ -1,0 +1,49 @@
+#! /bin/bash
+
+echo "< 解压到当前文件夹 > [ 压缩包名 ] [ 压缩类型 ]"
+echo "----- 压缩类型-可选 [ 1 (.tar.gz)] [ 2 (.7z)] [ 3 (.tar.xz)] [ 4 (.zip)]"
+
+v1=$1
+v2=$2
+
+type=0
+
+if [ -z $v2 ]; then
+    v2=0
+fi
+
+if [[ "$v1" == *".tar.gz"* ]]; then
+  type=1
+fi
+if [[ "$v1" == *".7z"* ]]; then
+  type=2
+fi
+if [[ "$v1" == *".tar.xz"* ]]; then
+  type=3
+fi
+if [[ "$v1" == *".zip"* ]]; then
+  type=4
+fi
+
+
+if [ $v2 -ne 0 ]; then
+    type=$v2
+fi
+
+if [ $type -eq 0 ]; then
+    echo "< 未发现默认类型退出 >"
+    exit 0
+fi
+
+
+if [ $type -eq 1 ]; then
+    tar -zxvf $v1
+elif [ $type -eq 2 ]; then
+    7z x $v1
+elif [ $type -eq 3 ]; then
+    tar -xvf $v1
+elif [ $type -eq 4 ]; then
+    unzip $v1
+else 
+    echo "< 类型不存在退出 >"
+fi
