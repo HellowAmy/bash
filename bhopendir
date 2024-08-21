@@ -1,4 +1,4 @@
 #! /bin/bash
 
 echo "< 打开当前路径到文件夹 >"
-nautilus .
+nohup nautilus . >/dev/null 2>&1 &
