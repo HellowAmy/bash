@@ -1,13 +1,20 @@
 #! /bin/bash
 
-echo "< 压缩成压缩包 > [ 文件夹名 ]"
+echo "< 压缩成压缩包 > [ 文件夹名 ][ - / 压缩类型 ]"
+echo "----- 压缩类型-可选 [ 1 (.tar.gz)] [ 2 (.7z)] [ 3 (.tar.xz)] [ 4 (.zip)]"
 
 v1=$1
+v2=$2
 
+type=$v2
 quit=0
 
 if [ -z $v1 ]; then
     quit=1
+fi
+
+if [ -z $v2 ]; then
+    type=1
 fi
 
 if [ $quit -eq 1 ]; then
@@ -16,4 +23,16 @@ if [ $quit -eq 1 ]; then
 fi
 
 v1=${v1%*/}
-tar -zcvf $v1.tar.gz $v1
+
+if [ $type -eq 1 ]; then
+    tar -zcvf $v1.tar.gz $v1
+fi
+if [ $type -eq 2 ]; then
+    7z a $v1.7z $v1
+fi
+if [ $type -eq 3 ]; then
+    tar -cJvf $v1.tar.xz $v1
+fi
+if [ $type -eq 4 ]; then
+    zip -r $v1.zip $v1
+fi
