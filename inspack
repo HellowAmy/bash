@@ -1,0 +1,26 @@
+#! /bin/bash
+
+echo "< 根据后缀自动识别安装包 > [ 安装包路径 ]"
+
+v1=$1
+
+type=0
+
+if [[ "$v1" == *".deb"* ]]; then
+  type=1
+fi
+
+if [ $type -eq 1 ]; then
+    sudo dpkg -i $v1
+elif [ $type -eq 2 ]; then
+    echo "="
+elif [ $type -eq 3 ]; then
+    echo "="
+elif [ $type -eq 4 ]; then
+    echo "="
+else 
+    echo "< 未识别安装包类型后缀 >"
+fi
+
+echo "< 安装完成 " $v1 " >"
+
